@@ -331,12 +331,12 @@ ct.normalizeGuides <- function(eset, method = c("scale", "FQ", "slope", "control
 ##' @title Normalize sample abundance estimates by median gRNA counts
 ##' @description This function normalizes Crispr gRNA abundance estimates by equalizing the median gRNA abundance values after
 ##' correcting for library size. It does this by converting raw count values to log2 counts per million and optionally adjusting further in 
-##' the usual way by dividing these values by user-specified library size factors. THis method should be more stable than the endogenous 
-##' scaling functions used in \code{voom} in th especific case of Crispr screens or other cases where the median number of observed counts may be low. 
+##' the usual way by dividing these values by user-specified library size factors. This method should be more stable than the endogenous 
+##' scaling functions used in \code{voom} in the specific case of Crispr screens or other settings where the median number of observed counts may be low. 
 ##' @param eset An \code{ExpressionSet} containing, at minimum, count data accessible by \code{exprs}.
 ##' @param lib.size An optional vector of voom-appropriate library size adjustment factors, usually calculated with \code{\link[edgeR]{calcNormFactors}} 
-##' and transformed to reflect the appropriate library size. These adjustment factors are interpreted as the total library sizes for each sample, 
-##' and if absent will be extrapolated from the columnwise count sums of the \code{exprs} slot of the \code{eset}.
+##' and transformed to reflect the appropriate library size. These adjustment factors are interpreted as the total library sizes for each sample; 
+##' if absent the plain median of the values will be returned.
 ##' @return A renormalized ExpressionSet object of the same type as the provided object.
 ##' @author Russell Bainer
 ##' @import limma
@@ -360,7 +360,7 @@ ct.normalizeMedians <- function(eset, lib.size = NULL) {
     counts <- exprs(eset)
 
     if (is.null(lib.size)) {
-        lib.size <- colSums(counts)
+        lib.size <- rep(1000, ncol(counts))
     } else if (!is.numeric(lib.size) | length(lib.size) != ncol(counts)) {
         stop("If specified, lib.size must be a numeric vector of the same length as the number of samples in the eset.")
     }

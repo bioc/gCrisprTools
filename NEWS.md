@@ -36,3 +36,6 @@ _*MAJOR UPDATE Adding the Following Functionality:*_
     - Concordance at the Top (CAT)
     - Probability Space scatter plots
     - UpSet plots with conditional overlap framework
+    
+### Version 2.2.2:
+  o Update ct.normalizeMedians() to return the plain median in the absence of provided `lib.size`s. 

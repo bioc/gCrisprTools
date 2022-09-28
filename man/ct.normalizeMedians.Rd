@@ -10,8 +10,8 @@ ct.normalizeMedians(eset, lib.size = NULL)
 \item{eset}{An \code{ExpressionSet} containing, at minimum, count data accessible by \code{exprs}.}
 
 \item{lib.size}{An optional vector of voom-appropriate library size adjustment factors, usually calculated with \code{\link[edgeR]{calcNormFactors}} 
-and transformed to reflect the appropriate library size. These adjustment factors are interpreted as the total library sizes for each sample, 
-and if absent will be extrapolated from the columnwise count sums of the \code{exprs} slot of the \code{eset}.}
+and transformed to reflect the appropriate library size. These adjustment factors are interpreted as the total library sizes for each sample; 
+if absent the plain median of the values will be returned.}
 }
 \value{
 A renormalized ExpressionSet object of the same type as the provided object.
@@ -19,8 +19,8 @@ A renormalized ExpressionSet object of the same type as the provided object.
 \description{
 This function normalizes Crispr gRNA abundance estimates by equalizing the median gRNA abundance values after
 correcting for library size. It does this by converting raw count values to log2 counts per million and optionally adjusting further in 
-the usual way by dividing these values by user-specified library size factors. THis method should be more stable than the endogenous 
-scaling functions used in \code{voom} in th especific case of Crispr screens or other cases where the median number of observed counts may be low.
+the usual way by dividing these values by user-specified library size factors. This method should be more stable than the endogenous 
+scaling functions used in \code{voom} in the specific case of Crispr screens or other settings where the median number of observed counts may be low.
 }
 \examples{
 data('es')
