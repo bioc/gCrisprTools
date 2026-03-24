@@ -2,7 +2,7 @@ Package: gCrisprTools
 Type: Package
 Title: Suite of Functions for Pooled Crispr Screen QC and Analysis
 Version: 2.17.2
-Date: 2021-08-23
+Date: 2026-03-24
 Author: Russell Bainer, Dariusz Ratman, Steve Lianoglou, Peter Haverty
 Authors@R: c(
     person("Russell", "Bainer", , "russ.bainer@gmail.com", c("aut", "cre", "fnd"), comment = "2026+"),
